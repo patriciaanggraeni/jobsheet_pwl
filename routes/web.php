@@ -3,10 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePage;
+use App\Http\Controllers\KuliahController;
 use App\Http\Controllers\PageController;
-
+use App\Http\Controllers\ProfileController;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,26 +59,37 @@ use App\Http\Controllers\PageController;
 
 // Route::resource('contact_us', PageController::class);
 
-Route::get('/helo', function () {
-    return view('hello', ['name' => 'Andi']);
-} );
+// Route::get('/helo', function () {
+//     return view('hello', ['name' => 'Andi']);
+// } );
 
 
-// menyambungkan view dengan controller
-Route::get('/home', [HomePage::class, 'index']);
+// menghubungkan controller dengan views -> index
+// Route::get('/home', [HomePage::class, 'index']);
 
-Route::prefix('daftar')->group(function () {
-    Route::get('/product', [PageController::class, 'show_product']);
-});
+// // menghubungkan controller dengan views -> product
+// Route::prefix('daftar')->group(function () {
+//     Route::get('/product', [PageController::class, 'show_product']);
+// });
 
-Route::prefix('daftar')->group(function () {
-    Route::get('/news{param}', [PageController::class, 'show_news']);
-});
+// // menghubungkan controller dengan views -> news{param}
+// Route::prefix('daftar')->group(function () {
+//     Route::get('/news{param}', [PageController::class, 'show_news']);
+// });
 
-Route::prefix('daftar')->group(function () {
-    Route::get('/program', [PageController::class, 'show_program']);
-});
+// // menghubungkan controller dengan views -> program
+// Route::prefix('daftar')->group(function () {
+//     Route::get('/program', [PageController::class, 'show_program']);
+// });
 
-Route::get('/about-us', [HomePage::class, 'show_about_us']);
+// // menghubungkan controller dengan views -> about_us
+// Route::get('/about-us', [HomePage::class, 'show_about_us']);
 
-Route::resource('/contact-us', ContactUsPage::class);
+// // menghubungkan controller dengan views -> contact_us
+// Route::resource('/contact-us', ContactUsPage::class);
+
+
+Route::get('/index', [PageController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/profile', [ProfileController::class, 'index']);
+Route::get('/kuliah', [KuliahController::class, 'index']);
