@@ -40,7 +40,37 @@
 
         <div class="pengalaman-kuliah"></div>
         <div class="profile"></div>
-        <div class="card-body"></div>
+        <div class="card-body">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>nopol</th>
+                        <th>merk</th>
+                        <th>jenis</th>
+                        <th>tahun buat</th>
+                        <th>warna</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach ( $kendaraan as $data )
+
+                        <tr>
+                            <td>{{ $data->nopol }}</td>
+                            <td>{{ $data->merk }}</td>
+                            <td>{{ $data->jenis }}</td>
+                            <td>{{ $data->tahun_buat }}</td>
+                            <td>{{ $data->warna }}</td>
+                        </tr>
+
+                    @endforeach
+
+                </tbody>
+
+            </table>
+
+        </div>
         <!-- /.card-body -->
         <div class="card-footer">
           Footer
