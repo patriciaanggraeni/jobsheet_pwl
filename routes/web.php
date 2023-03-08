@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HobiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePage;
 use App\Http\Controllers\KendaraanController;
@@ -95,4 +96,8 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 // Route::get('/profile', [ProfileController::class, 'index']);
 // Route::get('/kuliah', [KuliahController::class, 'index']);
 
-Route::get('/kendaraan', [KendaraanController::class, 'index']);
+// Route::get('/kendaraan', [KendaraanController::class, 'index']);
+
+
+// membuat route untuk menampilkan data hobi, keluarga dan matkul
+Route::get('/hobi', [HobiController::class, 'index']);

@@ -24,7 +24,7 @@
     @include("layouts.sidebar")
 
     <!-- Content Wrapper. Contains page content -->
-    @include("layouts.contentkendaraan")
+    @include("layouts.contenthobi")
 
     <!-- /.content-wrapper -->
     @include("layouts.footer")

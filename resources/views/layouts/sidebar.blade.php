@@ -38,21 +38,21 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ url('/dashboard') }}" class="nav-link">
+            <a href="{{ url('/hobi') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p> Dashboard</p>
+              <p>Hobi</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/profile') }}" class="nav-link">
+            <a href="{{ url('/keluarga') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>Profile</p>
+              <p>Keluarga</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/kuliah') }}" class="nav-link">
+            <a href="{{ url('/matkul') }}" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
-              <p>Pengalaman Kuliah</p>
+              <p>Mata Kuliah</p>
             </a>
           </li>
         </ul>
