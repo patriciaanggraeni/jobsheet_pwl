@@ -10,6 +10,7 @@ use App\Http\Controllers\HomePage;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\KuliahController;
+use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
@@ -103,6 +104,8 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 // membuat route untuk menampilkan data hobi
 Route::get('/hobi', [HobiController::class, 'index']);
 
-
 // membuat route untuk menampilkan data keluarga
 Route::get('/keluarga', [KeluargaController::class, 'index']);
+
+// membuat route untuk menampilkan data keluarga
+Route::get('/matkul', [MatkulController::class, 'index']);

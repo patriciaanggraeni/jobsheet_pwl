@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Kendaraan</h1>
+            <h1>Data Mata Kuliah</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -45,23 +45,25 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>nopol</th>
-                        <th>merk</th>
-                        <th>jenis</th>
-                        <th>tahun buat</th>
-                        <th>warna</th>
+                        <th>No</th>
+                        <th>Kode MK</th>
+                        <th>Mata Kuliah</th>
+                        <th>Dosen</th>
+                        <th>SKS</th>
+                        <th>Jam</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @foreach ( $kendaraan as $data )
+                    @foreach ( $matkul as $index => $data_matkul )
 
                         <tr>
-                            <td>{{ $data->nopol }}</td>
-                            <td>{{ $data->merk }}</td>
-                            <td>{{ $data->jenis }}</td>
-                            <td>{{ $data->tahun_buat }}</td>
-                            <td>{{ $data->warna }}</td>
+                            <td>{{ $index+1 }}</td>
+                            <td>{{ $data_matkul->kode_mk }}</td>
+                            <td>{{ $data_matkul->mata_kuliah }}</td>
+                            <td>{{ $data_matkul->dosen }}</td>
+                            <td>{{ $data_matkul->sks }}</td>
+                            <td>{{ $data_matkul->jam }}</td>
                         </tr>
 
                     @endforeach

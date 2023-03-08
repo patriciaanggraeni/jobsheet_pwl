@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
         //$this->call( [HobiSeeder::class] );
 
         // panggil class KeluargaSeeder
-        $this->call( [KeluargaSeeder::class] );
+        // $this->call( [KeluargaSeeder::class] );
+
+        // panggil class KeluargaSeeder
+        $this->call( [MatkulSeeder::class] );
     }
 }
