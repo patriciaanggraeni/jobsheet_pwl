@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HobiController;
 use App\Http\Controllers\HomeController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\KuliahController;
 use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
@@ -26,86 +28,98 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Auth::routes();
+Route::get('/logout', [LoginController::class, 'logout']);
 
-// Route::get('/about', function () {
-//     return "NIM: 2141720058, Nama: Patria Anggara Susilo Putra";
-// } );
+Route::middleware(['auth'])->group( function() {
 
-// Route::get('/articles/{id}', function ($id) {
-//     return "Halaman artikel dengan id " . $id;
-// } );
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // });
 
-// Route::get('/', [HomeController::class, 'index']);
-// Route::get('/about', [AboutController::class, 'about']);
-// Route::get('/articles/{id}', [ArticleController::class, 'article']);
+    // Route::get('/about', function () {
+    //     return "NIM: 2141720058, Nama: Patria Anggara Susilo Putra";
+    // } );
 
+    // Route::get('/articles/{id}', function ($id) {
+    //     return "Halaman artikel dengan id " . $id;
+    // } );
 
-// Route::prefix('product') -> group( function() {
-//     Route::get('/home', [PageController::class, 'hello']);
-// } );
-
-// Route::prefix('product') -> group( function() {
-//     Route::get('/category', [PageController::class, 'show_product']);
-// });
-
-// Route::prefix('product') -> group( function() {
-//     Route::get('/news/{param}', [PageController::class, 'show_news']);
-// });
-
-// Route::prefix('daftar')->group(function () {
-//     Route::get('/program', [PageController::class, 'show_program']);
-// });
-
-// Route::get('/about', [PageController::class, 'show_about_us']);
-
-// Route::resource('contact_us', PageController::class);
-
-// Route::get('/helo', function () {
-//     return view('hello', ['name' => 'Andi']);
-// } );
+    // Route::get('/', [HomeController::class, 'index']);
+    // Route::get('/about', [AboutController::class, 'about']);
+    // Route::get('/articles/{id}', [ArticleController::class, 'article']);
 
 
-// menghubungkan controller dengan views -> index
-// Route::get('/home', [HomePage::class, 'index']);
+    // Route::prefix('product') -> group( function() {
+    //     Route::get('/home', [PageController::class, 'hello']);
+    // } );
 
-// // menghubungkan controller dengan views -> product
-// Route::prefix('daftar')->group(function () {
-//     Route::get('/product', [PageController::class, 'show_product']);
-// });
+    // Route::prefix('product') -> group( function() {
+    //     Route::get('/category', [PageController::class, 'show_product']);
+    // });
 
-// // menghubungkan controller dengan views -> news{param}
-// Route::prefix('daftar')->group(function () {
-//     Route::get('/news{param}', [PageController::class, 'show_news']);
-// });
+    // Route::prefix('product') -> group( function() {
+    //     Route::get('/news/{param}', [PageController::class, 'show_news']);
+    // });
 
-// // menghubungkan controller dengan views -> program
-// Route::prefix('daftar')->group(function () {
-//     Route::get('/program', [PageController::class, 'show_program']);
-// });
+    // Route::prefix('daftar')->group(function () {
+    //     Route::get('/program', [PageController::class, 'show_program']);
+    // });
 
-// // menghubungkan controller dengan views -> about_us
-// Route::get('/about-us', [HomePage::class, 'show_about_us']);
+    // Route::get('/about', [PageController::class, 'show_about_us']);
 
-// // menghubungkan controller dengan views -> contact_us
-// Route::resource('/contact-us', ContactUsPage::class);
+    // Route::resource('contact_us', PageController::class);
 
-
-// Route::get('/index', [PageController::class, 'index']);
-// Route::get('/dashboard', [DashboardController::class, 'index']);
-// Route::get('/profile', [ProfileController::class, 'index']);
-// Route::get('/kuliah', [KuliahController::class, 'index']);
-
-// Route::get('/kendaraan', [KendaraanController::class, 'index']);
+    // Route::get('/helo', function () {
+    //     return view('hello', ['name' => 'Andi']);
+    // } );
 
 
-// membuat route untuk menampilkan data hobi
-Route::get('/hobi', [HobiController::class, 'index']);
+    // menghubungkan controller dengan views -> index
+    // Route::get('/home', [HomePage::class, 'index']);
 
-// membuat route untuk menampilkan data keluarga
-Route::get('/keluarga', [KeluargaController::class, 'index']);
+    // // menghubungkan controller dengan views -> product
+    // Route::prefix('daftar')->group(function () {
+    //     Route::get('/product', [PageController::class, 'show_product']);
+    // });
 
-// membuat route untuk menampilkan data keluarga
-Route::get('/matkul', [MatkulController::class, 'index']);
+    // // menghubungkan controller dengan views -> news{param}
+    // Route::prefix('daftar')->group(function () {
+    //     Route::get('/news{param}', [PageController::class, 'show_news']);
+    // });
+
+    // // menghubungkan controller dengan views -> program
+    // Route::prefix('daftar')->group(function () {
+    //     Route::get('/program', [PageController::class, 'show_program']);
+    // });
+
+    // // menghubungkan controller dengan views -> about_us
+    // Route::get('/about-us', [HomePage::class, 'show_about_us']);
+
+    // // menghubungkan controller dengan views -> contact_us
+    // Route::resource('/contact-us', ContactUsPage::class);
+
+
+    // Route::get('/index', [PageController::class, 'index']);
+    // Route::get('/dashboard', [DashboardController::class, 'index']);
+    // Route::get('/profile', [ProfileController::class, 'index']);
+    // Route::get('/kuliah', [KuliahController::class, 'index']);
+
+    // Route::get('/kendaraan', [KendaraanController::class, 'index']);
+
+    // Route::get('/', function() {
+    //     return view('welcome');
+    // });
+
+    // membuat route untuk menampilkan data hobi
+    Route::get('/hobi', [HobiController::class, 'index']);
+
+    // membuat route untuk menampilkan data keluarga
+    Route::get('/keluarga', [KeluargaController::class, 'index']);
+
+    // membuat route untuk menampilkan data keluarga
+    Route::get('/matkul', [MatkulController::class, 'index']);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+} );
