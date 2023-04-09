@@ -11,6 +11,7 @@ use App\Http\Controllers\HomePage;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\KuliahController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
@@ -27,6 +28,8 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 
 Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout']);
@@ -111,15 +114,23 @@ Route::middleware(['auth'])->group( function() {
     //     return view('welcome');
     // });
 
+    // membuat route mengarah ke dashboard
+    Route::get('/', [DashboardController::class, 'index']);
+
     // membuat route untuk menampilkan data hobi
     Route::get('/hobi', [HobiController::class, 'index']);
 
     // membuat route untuk menampilkan data keluarga
     Route::get('/keluarga', [KeluargaController::class, 'index']);
 
-    // membuat route untuk menampilkan data keluarga
+    // membuat route untuk menampilkan data matkul
     Route::get('/matkul', [MatkulController::class, 'index']);
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    // membuat route untuk crud dan ubah parameternya
+    Route::resource('/mahasiswa', MahasiswaController::class)->parameter('mahasiswa', 'id');
+
 } );

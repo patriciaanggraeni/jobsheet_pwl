@@ -54,7 +54,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach ( $kendaraan as $data )
+                    {{-- @foreach ( $kendaraan as $data )
 
                         <tr>
                             <td>{{ $data->nopol }}</td>
@@ -64,7 +64,7 @@
                             <td>{{ $data->warna }}</td>
                         </tr>
 
-                    @endforeach
+                    @endforeach --}}
 
                 </tbody>
 

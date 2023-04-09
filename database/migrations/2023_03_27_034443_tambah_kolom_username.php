@@ -15,6 +15,7 @@ class TambahKolomUsername extends Migration
     {
         Schema::table('users', function(Blueprint $table) {
             $table->string('username', 10)->nullable()->unique()->index();
+           
         });
     }
 
