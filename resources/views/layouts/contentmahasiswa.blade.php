@@ -61,11 +61,8 @@
                         <th>No</th>
                         <th>NIM</th>
                         <th>Nama</th>
-                        <th>Jenis Kelamin</th>
                         <th>Kelas</th>
-                        {{-- <th>Tempat Lahir</th> --}}
-                        {{-- <th>Tanggal Lahir</th> --}}
-                        {{-- <th>Alamat</th> --}}
+                        <th>Jenis Kelamin</th>
                         <th>No. Handphone</th>
                         <th>Action</th>
                     </tr>
@@ -80,10 +77,12 @@
                             <td>{{ $m->nama }}</td>
                             <td>{{ ($m->jenis_kelamin == 'l' ? 'Laki-laki' : 'Perempuan' ) }}</td>
                             <td>{{ $m->kelas->nama_kelas }}</td>
-                            <td>{{ $m->no_telp }}</td>
                             <td class="">
                                 <a href="{{ url('/mahasiswa/' . $m->id . '/edit') }}" class="btn btn-sm btn-warning">
                                     Edit
+                                </a>
+                                <a href="{{ url('/mahasiswa/' . $m->id) }}" class="btn btn-sm btn-primary">
+                                    Detail
                                 </a>
                                 <form class="d-inline" method="POST" action="{{ url('/mahasiswa/' . $m->id) }}">
                                     @csrf
@@ -107,9 +106,7 @@
 
         </div>
         <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
+        <div class="card-footer"></div>
         <!-- /.card-footer-->
       </div>
       <!-- /.card -->

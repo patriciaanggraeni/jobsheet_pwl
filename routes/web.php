@@ -36,84 +36,6 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::middleware(['auth'])->group( function() {
 
-    // Route::get('/', function () {
-    //     return view('welcome');
-    // });
-
-    // Route::get('/about', function () {
-    //     return "NIM: 2141720058, Nama: Patria Anggara Susilo Putra";
-    // } );
-
-    // Route::get('/articles/{id}', function ($id) {
-    //     return "Halaman artikel dengan id " . $id;
-    // } );
-
-    // Route::get('/', [HomeController::class, 'index']);
-    // Route::get('/about', [AboutController::class, 'about']);
-    // Route::get('/articles/{id}', [ArticleController::class, 'article']);
-
-
-    // Route::prefix('product') -> group( function() {
-    //     Route::get('/home', [PageController::class, 'hello']);
-    // } );
-
-    // Route::prefix('product') -> group( function() {
-    //     Route::get('/category', [PageController::class, 'show_product']);
-    // });
-
-    // Route::prefix('product') -> group( function() {
-    //     Route::get('/news/{param}', [PageController::class, 'show_news']);
-    // });
-
-    // Route::prefix('daftar')->group(function () {
-    //     Route::get('/program', [PageController::class, 'show_program']);
-    // });
-
-    // Route::get('/about', [PageController::class, 'show_about_us']);
-
-    // Route::resource('contact_us', PageController::class);
-
-    // Route::get('/helo', function () {
-    //     return view('hello', ['name' => 'Andi']);
-    // } );
-
-
-    // menghubungkan controller dengan views -> index
-    // Route::get('/home', [HomePage::class, 'index']);
-
-    // // menghubungkan controller dengan views -> product
-    // Route::prefix('daftar')->group(function () {
-    //     Route::get('/product', [PageController::class, 'show_product']);
-    // });
-
-    // // menghubungkan controller dengan views -> news{param}
-    // Route::prefix('daftar')->group(function () {
-    //     Route::get('/news{param}', [PageController::class, 'show_news']);
-    // });
-
-    // // menghubungkan controller dengan views -> program
-    // Route::prefix('daftar')->group(function () {
-    //     Route::get('/program', [PageController::class, 'show_program']);
-    // });
-
-    // // menghubungkan controller dengan views -> about_us
-    // Route::get('/about-us', [HomePage::class, 'show_about_us']);
-
-    // // menghubungkan controller dengan views -> contact_us
-    // Route::resource('/contact-us', ContactUsPage::class);
-
-
-    // Route::get('/index', [PageController::class, 'index']);
-    // Route::get('/dashboard', [DashboardController::class, 'index']);
-    // Route::get('/profile', [ProfileController::class, 'index']);
-    // Route::get('/kuliah', [KuliahController::class, 'index']);
-
-    // Route::get('/kendaraan', [KendaraanController::class, 'index']);
-
-    // Route::get('/', function() {
-    //     return view('welcome');
-    // });
-
     // membuat route mengarah ke dashboard
     Route::get('/', [DashboardController::class, 'index']);
 
@@ -125,10 +47,6 @@ Route::middleware(['auth'])->group( function() {
 
     // membuat route untuk menampilkan data matkul
     Route::get('/matkul', [MatkulController::class, 'index']);
-
-    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     // membuat route untuk crud dan ubah parameternya
     Route::resource('/mahasiswa', MahasiswaController::class)->parameter('mahasiswa', 'id');

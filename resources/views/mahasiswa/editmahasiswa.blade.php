@@ -67,7 +67,7 @@
                         <option value="L">Laki - laki</option>
                         <option value="P">Perempuan</option>
                     </select>
-                    @error('alamat')
+                    @error('jenis_kelamin')
                     <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>

@@ -28,7 +28,7 @@ class MahasiswaController extends Controller
     public function create()
     {
         $kelas = KelasModel::all();
-        return view('mahasiswa.createmhs', ['kelas' => $kelas]);
+        return view('mahasiswa.mhs', ['kelas' => $kelas]);
     }
 
     /**
@@ -60,9 +60,9 @@ class MahasiswaController extends Controller
      * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function show(MahasiswaModel $mahasiswa)
-    {
-        //
+    public function show( $nim ) {
+        $mahasiswa = MahasiswaModel::find($nim);
+        return view('mahasiswa.detailmhs', ['mhs' => $mahasiswa]);
     }
 
     /**
@@ -71,10 +71,10 @@ class MahasiswaController extends Controller
      * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id )
+    public function edit( $nim )
     {
-        $data = MahasiswaModel::find($id);
-        return view('mahasiswa.editmhs', ['data' => $data, 'url_form' => url('/mahasiswa/' . $id)]);
+        $data = MahasiswaModel::find( $nim );
+        return view('mahasiswa.editmhs', ['data' => $data, 'url_form' => url('/mahasiswa/' . $nim)]);
     }
 
     /**
