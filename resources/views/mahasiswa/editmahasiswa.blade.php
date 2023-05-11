@@ -45,25 +45,36 @@
             <form action="{{ $url_form }}" method="POST">
 
                 @csrf
-                {!! isset($data) ? method_field('PUT') : '' !!}
+                {!! isset($mhs) ? method_field('PUT') : '' !!}
                 <div class="form-group">
                     <label for="input-nim">Nim</label>
-                    <input id="input-nim" class="form-control  @error('nim') is-invalid @enderror" name="nim" type="text" value="{{ old('nim') }}">
+                    <input id="input-nim" class="form-control @error('nim') is-invalid @enderror" name="nim" type="text" value="{{ isset($mhs) ? $mhs->nim : old('nim') }}">
                     @error('nim')
                         <span class="error invalid-feedback">{{ $message }} </span>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="input-name">Nama</label>
-                    <input id="input-name" class="form-control" name="nama" type="text" value="{{ $data->nama }}">
-                    @error('alamat')
+                    <input id="input-name" class="form-control" name="nama" type="text" value="{{ $mhs->nama }}">
+                    @error('nama')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="input-kelas">Kelas</label>
+                    <select class="form-control" name="kelas_id" id="input-kelas">
+                        @foreach ($kelas as $kls)
+                            <option value="{{ $kls->id }}" {{ $mhs->kelas_id == $kls->id ? 'selected' : '' }}>{{ $kls->nama_kelas }}</option>
+                        @endforeach
+                    </select>
+                    @error('kelas_id')
                     <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="input-jenis-kelamin">Jenis Kelamin</label>
                     <select id="input-jenis-kelamin" name="jenis_kelamin" class="form-control">
-                        <option selected >{{ $data->jenis_kelamin }}</option>
+                        <option selected >{{ $mhs->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan'}}</option>
                         <option value="L">Laki - laki</option>
                         <option value="P">Perempuan</option>
                     </select>
@@ -73,28 +84,28 @@
                 </div>
                 <div class="form-group">
                     <label for="input-tempat-lahir">Tempat Lahir</label>
-                    <input id="input-tempat-lahir" class="form-control" name="tempat_lahir" type="text" value="{{ $data->tempat_lahir }}">
+                    <input id="input-tempat-lahir" class="form-control" name="tempat_lahir" type="text" value="{{ $mhs->tempat_lahir }}">
                     @error('alamat')
                     <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="input-tanggal-lahir">Tanggal Lahir</label>
-                    <input id="input-tanggal-lahir" class="form-control" name="tgl_lahir" type="text" value="{{ $data->tgl_lahir }}">
+                    <input id="input-tanggal-lahir" class="form-control" name="tgl_lahir" type="text" value="{{ $mhs->tgl_lahir }}">
                     @error('alamat')
                     <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="alamat">Alamat</label>
-                    <input id="input-alamat" class="form-control" name="alamat" type="text" value="{{ $data->alamat }}">
+                    <input id="input-alamat" class="form-control" name="alamat" type="text" value="{{ $mhs->alamat }}">
                     @error('alamat')
                     <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="input-no-telp">No. Telphone</label>
-                    <input id="input-no-telp" class="form-control" name="no_telp" type="text" value="{{ $data->no_telp }}">
+                    <input id="input-no-telp" class="form-control" name="no_telp" type="text" value="{{ $mhs->no_telp }}">
                     @error('alamat')
                     <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -105,9 +116,7 @@
             </form>
 
         <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
+        <div class="card-footer"></div>
         <!-- /.card-footer-->
       </div>
       <!-- /.card -->

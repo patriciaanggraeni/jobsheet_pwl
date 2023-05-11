@@ -71,10 +71,10 @@ class MahasiswaController extends Controller
      * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function edit( $nim )
-    {
-        $data = MahasiswaModel::find( $nim );
-        return view('mahasiswa.editmhs', ['data' => $data, 'url_form' => url('/mahasiswa/' . $nim)]);
+    public function edit( $nim ) {
+        $mahasiswa = MahasiswaModel::find($nim);
+        $kelas = KelasModel::all();
+        return view('mahasiswa.editmhs', ['mhs' => $mahasiswa, 'url_form' => url('/mahasiswa/' . $nim), 'kelas' => $kelas]);
     }
 
     /**
@@ -84,13 +84,13 @@ class MahasiswaController extends Controller
      * @param  \App\Models\Mahasiswa $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
 
         $request->validate([
             'nim' => 'required|string|max:10|unique:mahasiswa,nim,'.$id,
             'nama' => 'required|string|max:50',
-            'jenis_kelamin' => 'required||in:L,P',
+            'kelas_id' => 'required',
+            'jenis_kelamin' => 'required|in:L,P',
             'tempat_lahir' => 'required|string|max:50',
             'tgl_lahir' => 'required|date',
             'alamat' => 'required',

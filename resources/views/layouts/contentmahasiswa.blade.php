@@ -63,7 +63,6 @@
                         <th>Nama</th>
                         <th>Kelas</th>
                         <th>Jenis Kelamin</th>
-                        <th>No. Handphone</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -75,7 +74,7 @@
                             <td>{{ ++$i }}</td>
                             <td>{{ $m->nim }}</td>
                             <td>{{ $m->nama }}</td>
-                            <td>{{ ($m->jenis_kelamin == 'l' ? 'Laki-laki' : 'Perempuan' ) }}</td>
+                            <td>{{ ($m->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' ) }}</td>
                             <td>{{ $m->kelas->nama_kelas }}</td>
                             <td class="">
                                 <a href="{{ url('/mahasiswa/' . $m->id . '/edit') }}" class="btn btn-sm btn-warning">
