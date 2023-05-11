@@ -62,9 +62,10 @@
                         <th>NIM</th>
                         <th>Nama</th>
                         <th>Jenis Kelamin</th>
-                        <th>Tempat Lahir</th>
-                        <th>Tanggal Lahir</th>
-                        <th>Alamat</th>
+                        <th>Kelas</th>
+                        {{-- <th>Tempat Lahir</th> --}}
+                        {{-- <th>Tanggal Lahir</th> --}}
+                        {{-- <th>Alamat</th> --}}
                         <th>No. Handphone</th>
                         <th>Action</th>
                     </tr>
@@ -77,10 +78,8 @@
                             <td>{{ ++$i }}</td>
                             <td>{{ $m->nim }}</td>
                             <td>{{ $m->nama }}</td>
-                            <td>{{ $m->jenis_kelamin }}</td>
-                            <td>{{ $m->tampat_lahir }}</td>
-                            <td>{{ $m->tgl_lahir }}</td>
-                            <td>{{ $m->alamat }}</td>
+                            <td>{{ ($m->jenis_kelamin == 'l' ? 'Laki-laki' : 'Perempuan' ) }}</td>
+                            <td>{{ $m->kelas->nama_kelas }}</td>
                             <td>{{ $m->no_telp }}</td>
                             <td class="">
                                 <a href="{{ url('/mahasiswa/' . $m->id . '/edit') }}" class="btn btn-sm btn-warning">

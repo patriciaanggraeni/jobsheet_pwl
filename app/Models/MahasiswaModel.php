@@ -11,6 +11,17 @@ class MahasiswaModel extends Model
 
     protected $table = 'mahasiswa';
     protected $fillable = [
-        'nim', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tgl_lahir', 'alamat', 'no_telp'
+        'nim',
+        'nama',
+        'kelas_id',
+        'jenis_kelamin',
+        'tempat_lahir',
+        'tgl_lahir',
+        'alamat',
+        'no_telp'
     ];
+
+    public function kelas() {
+        return $this->belongsTo(KelasModel::class);
+    }
 }

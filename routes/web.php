@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\ArticleController;
+// use App\Http\Controllers\AboutController;
+// use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HobiController;
@@ -16,6 +15,7 @@ use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*

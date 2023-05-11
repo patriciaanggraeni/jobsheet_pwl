@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KelasModel;
 use App\Models\Mahasiswa;
 use App\Models\MahasiswaModel;
 use Illuminate\Http\Request;
@@ -26,7 +27,8 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('mahasiswa.createmhs');
+        $kelas = KelasModel::all();
+        return view('mahasiswa.createmhs', ['kelas' => $kelas]);
     }
 
     /**
@@ -38,6 +40,7 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'kelas_id' => 'required',
             'nim' => 'required|string|max:10|unique:mahasiswa,nim',
             'nama' => 'required|string|max:50',
             'jenis_kelamin' => 'required',
