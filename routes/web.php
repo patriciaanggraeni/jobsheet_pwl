@@ -14,6 +14,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Models\MahasiswaModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
@@ -50,5 +51,6 @@ Route::middleware(['auth'])->group( function() {
 
     // membuat route untuk crud dan ubah parameternya
     Route::resource('/mahasiswa', MahasiswaController::class)->parameter('mahasiswa', 'id');
+    Route::get('/mahasiswa/{id}/detail_khs',[MahasiswaController::class,'khs']);
 
 } );

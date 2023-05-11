@@ -77,11 +77,14 @@
                             <td>{{ ($m->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' ) }}</td>
                             <td>{{ $m->kelas->nama_kelas }}</td>
                             <td class="">
-                                <a href="{{ url('/mahasiswa/' . $m->id . '/edit') }}" class="btn btn-sm btn-warning">
-                                    Edit
+                                <a href="{{ url('/mahasiswa/' . $m->id . '/detail_khs') }}" class="btn btn-sm btn-info">
+                                    Nilai
                                 </a>
                                 <a href="{{ url('/mahasiswa/' . $m->id) }}" class="btn btn-sm btn-primary">
                                     Detail
+                                </a>
+                                <a href="{{ url('/mahasiswa/' . $m->id . '/edit') }}" class="btn btn-sm btn-primary">
+                                    Edit
                                 </a>
                                 <form class="d-inline" method="POST" action="{{ url('/mahasiswa/' . $m->id) }}">
                                     @csrf
