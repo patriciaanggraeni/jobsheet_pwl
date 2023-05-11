@@ -79,8 +79,8 @@
                     <label for="input-jenis-kelamin">Jenis Kelamin</label>
                     <select id="input-jenis-kelamin" name="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror">
                         <option selected>--Pilih Jenis Kelamin--</option>
-                        <option value="l">Laki - laki</option>
-                        <option value="p">Perempuan</option>
+                        <option value="L">Laki - laki</option>
+                        <option value="P">Perempuan</option>
                     </select>
                     @error('jenis_kelamin')
                         <span class="error invalid-feedback">{{ $message }} </span>

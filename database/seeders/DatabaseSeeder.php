@@ -16,15 +16,20 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         // panggil class KendaraanSeeder
-        //$this->call( [KendaraanSeeder::class] );
+        $this->call( [KendaraanSeeder::class] );
 
         // panggil class HobiSeeder
-        //$this->call( [HobiSeeder::class] );
+        $this->call( [HobiSeeder::class] );
 
         // panggil class KeluargaSeeder
-        // $this->call( [KeluargaSeeder::class] );
+        $this->call( [KeluargaSeeder::class] );
 
         // panggil class KeluargaSeeder
         $this->call( [MatkulSeeder::class] );
+        $this->call( [UserSeeder::class] );
+        $this->call( [MahasiswaSeeder::class] );
+        $this->call( [MataKuliahSeeder::class] );
+        $this->call( [KelasSeeder::class] );
+        $this->call( [UpdateMahasiswaSeeder::class] );
     }
 }
