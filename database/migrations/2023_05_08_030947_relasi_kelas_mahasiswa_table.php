@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RelasiKelasMahasiswaTable extends Migration
-{
+class RelasiKelasMahasiswaTable extends Migration {
     /**
      * Run the migrations.
      *
@@ -13,7 +12,6 @@ class RelasiKelasMahasiswaTable extends Migration
      */
     public function up() {
         Schema::table('mahasiswa', function(Blueprint $table) {
-            // $table->dropColumn('kelas');
             $table->unsignedBigInteger('kelas_id')->nullable()->after('id');
             $table->foreign('kelas_id')->references('id')->on('kelas');
         });
@@ -31,3 +29,4 @@ class RelasiKelasMahasiswaTable extends Migration
         });
     }
 }
+

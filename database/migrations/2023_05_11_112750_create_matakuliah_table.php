@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMatakuliahTable extends Migration
-{
+class CreateMatakuliahTable extends Migration {
     /**
      * Run the migrations.
      *
@@ -32,3 +31,4 @@ class CreateMatakuliahTable extends Migration
         Schema::dropIfExists('matakuliah');
     }
 }
+

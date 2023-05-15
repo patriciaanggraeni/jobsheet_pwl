@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KelasModel extends Model
-{
+class KelasModel extends Model {
     use HasFactory;
     protected $table = "kelas";
 
@@ -14,3 +13,4 @@ class KelasModel extends Model
         return $this->hasMany(MahasiswaModel::class);
     }
 }
+

@@ -69,13 +69,14 @@
                 <tbody>
 
                     @if ($mhs->count() > 0)
+                    {{ dd($mhs) }}
                     @foreach($mhs as $i => $m)
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $m->nim }}</td>
                             <td>{{ $m->nama }}</td>
-                            <td>{{ ($m->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' ) }}</td>
                             <td>{{ $m->kelas->nama_kelas }}</td>
+                            <td>{{ ($m->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' ) }}</td>
                             <td class="">
                                 <a href="{{ url('/mahasiswa/' . $m->id . '/detail_khs') }}" class="btn btn-sm btn-info">
                                     Nilai

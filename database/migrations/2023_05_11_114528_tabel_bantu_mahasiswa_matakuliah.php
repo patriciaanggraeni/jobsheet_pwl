@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TabelBantuMahasiswaMatakuliah extends Migration
-{
+class TabelBantuMahasiswaMatakuliah extends Migration {
     /**
      * Run the migrations.
      *

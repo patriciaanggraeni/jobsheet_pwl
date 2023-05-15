@@ -8,15 +8,13 @@ use App\Models\MahasiswaMataKuliahModel;
 use App\Models\MahasiswaModel;
 use Illuminate\Http\Request;
 
-class MahasiswaController extends Controller
-{
+class MahasiswaController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $data_mhs = MahasiswaModel::all();
         return view('mahasiswa')->with('mhs', $data_mhs);
     }
@@ -26,8 +24,7 @@ class MahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         $kelas = KelasModel::all();
         return view('mahasiswa.mhs', ['kelas' => $kelas]);
     }
@@ -38,8 +35,7 @@ class MahasiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $request->validate([
             'kelas_id' => 'required',
             'nim' => 'required|string|max:10|unique:mahasiswa,nim',
@@ -85,7 +81,7 @@ class MahasiswaController extends Controller
      * @param  \App\Models\Mahasiswa $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request, $id) {
 
         $request->validate([
             'nim' => 'required|string|max:10|unique:mahasiswa,nim,'.$id,

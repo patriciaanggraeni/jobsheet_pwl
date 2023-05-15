@@ -5,8 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class KelasSeeder extends Seeder
-{
+class KelasSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
@@ -28,3 +27,4 @@ class KelasSeeder extends Seeder
         DB::table('kelas')->insert($kelas);
     }
 }
+

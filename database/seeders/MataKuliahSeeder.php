@@ -5,8 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class MataKuliahSeeder extends Seeder
-{
+class MataKuliahSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
