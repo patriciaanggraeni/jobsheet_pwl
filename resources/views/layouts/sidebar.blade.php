@@ -62,6 +62,13 @@
               <p>Mahasiswa</p>
             </a>
           </li>
+          <li class="nav-item">
+            {{-- tambahkan opsi sidebar mengarah ke route mahasiswa --}}
+            <a href="{{ url('/articles') }}" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>Artikel</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

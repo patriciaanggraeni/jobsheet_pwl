@@ -13,7 +13,7 @@ class ArticleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-
+        return view('artikel.articles');
     }
 
     /**
@@ -22,7 +22,7 @@ class ArticleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('artikel.createarticles');
+        return view('artikel.articles');
     }
 
     /**
@@ -30,7 +30,7 @@ class ArticleController extends Controller {
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */ 
+     */
     public function store(Request $request) {
         if ($request->file('image')) {
             $image_name = $request->file('image')->store('image', 'public');
@@ -42,7 +42,7 @@ class ArticleController extends Controller {
             'featured_image' => $image_name
         ]);
 
-        return 'Artikel berhasil di simpan';
+        return view('artikel.articles', ['message' => 'Artikel berhasil di simpan']);
     }
 
     /**
