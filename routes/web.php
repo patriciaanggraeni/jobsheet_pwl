@@ -2,6 +2,8 @@
 
 // use App\Http\Controllers\AboutController;
 // use App\Http\Controllers\ArticleController;
+
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HobiController;
@@ -52,5 +54,8 @@ Route::middleware(['auth'])->group( function() {
     // membuat route untuk crud dan ubah parameternya
     Route::resource('/mahasiswa', MahasiswaController::class)->parameter('mahasiswa', 'id');
     Route::get('/mahasiswa/{id}/detail_khs',[MahasiswaController::class,'khs']);
+
+     // membuat route untuk menampilkan data artikel
+     Route::resource('/articles', ArticleController::class);
 
 } );
