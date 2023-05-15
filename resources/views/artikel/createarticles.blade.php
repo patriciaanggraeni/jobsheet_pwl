@@ -11,8 +11,7 @@
             <label for="image">Feature Image: </label>
             <input type="file" class="form-control" required="required" name="image"></br>
 
-            <button type="submit" name="submit" class="btn btn-primary float-right">Simpan</button>
-        Page 4 of 11
+            <button type="submit" name="submit" class="btn btn-primary float-right">Simpan</button> 
         </div>
     </form>
 </div>

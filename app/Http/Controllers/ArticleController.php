@@ -5,16 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\ArticleModel;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
-{
+class ArticleController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+
     }
 
     /**
@@ -22,9 +21,8 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('artikel.createarticles');
     }
 
     /**
@@ -33,9 +31,18 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        if ($request->file('image')) {
+            $image_name = $request->file('image')->store('image', 'public');
+        }
+
+        ArticleModel::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'featured_image' => $image_name
+        ]);
+
+        return 'Artikel berhasil di simpan';
     }
 
     /**
