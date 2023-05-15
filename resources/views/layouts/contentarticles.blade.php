@@ -94,18 +94,15 @@
                         <td colspan="6" class="text-center">Data tidak ada</td>
                     </tr>
                 @endif
-
                 </tbody>
-
             </table>
-
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer"></div>
-        <!-- /.card-footer-->
+        <div class="card-footer">
+            <hr>
+            <form action="{{ url('/article/exportpdf') }}" method="GET">
+                <button type="submit" class="btn btn-sm btn-primary">Export</button>
+            </form>
+        </div>
       </div>
-      <!-- /.card -->
-
     </section>
-    <!-- /.content -->
-  </div>
+</div>

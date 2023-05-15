@@ -58,4 +58,6 @@ Route::middleware(['auth'])->group( function() {
      // membuat route untuk menampilkan data artikel
      Route::resource('/articles', ArticleController::class);
 
+     Route::get('/article/exportpdf', [ArticleController::class, 'export_pdf'])->name('export_pdf');
+
 } );

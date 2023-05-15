@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ArticleModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class ArticleController extends Controller {
 
@@ -101,5 +102,11 @@ class ArticleController extends Controller {
     public function destroy( $id ) {
         ArticleModel::where('id', $id)->delete();
         return redirect('/articles')->with('success', 'Data Artikel Berhasil Dihapus!');
+    }
+
+    public function export_pdf() {
+        $articles = ArticleModel::all();
+        $pdf = PDF::loadview('artikel.exportpdf', ['articles' => $articles]);
+        return $pdf->stream();
     }
 }
