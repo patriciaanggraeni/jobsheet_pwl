@@ -30,7 +30,7 @@ class ArticleController extends Controller {
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function store(Request $request) {
         if ($request->file('image')) {
             $image_name = $request->file('image')->store('image', 'public');
