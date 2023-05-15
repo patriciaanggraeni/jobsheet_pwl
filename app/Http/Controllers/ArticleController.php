@@ -13,7 +13,8 @@ class ArticleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('artikel.articles');
+        $data_articles = ArticleModel::all();
+        return view('articles')->with('articles', $data_articles);
     }
 
     /**
@@ -22,7 +23,8 @@ class ArticleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('artikel.articles');
+        $articles = ArticleModel::all();
+        return view('artikel.articles', ['articles' => $articles]);
     }
 
     /**
@@ -42,7 +44,8 @@ class ArticleController extends Controller {
             'featured_image' => $image_name
         ]);
 
-        return view('artikel.articles', ['message' => 'Artikel berhasil di simpan']);
+        ArticleModel::create($request->all());
+        return redirect('/articles')->with('success', 'Data Articles Berhasil Ditambahkan');
     }
 
     /**
@@ -51,9 +54,8 @@ class ArticleController extends Controller {
      * @param  \App\Models\ArticleModel  $articleModel
      * @return \Illuminate\Http\Response
      */
-    public function show(ArticleModel $articleModel)
-    {
-        //
+    public function show(ArticleModel $articleModel) {
+
     }
 
     /**
@@ -62,9 +64,8 @@ class ArticleController extends Controller {
      * @param  \App\Models\ArticleModel  $articleModel
      * @return \Illuminate\Http\Response
      */
-    public function edit(ArticleModel $articleModel)
-    {
-        //
+    public function edit(ArticleModel $articleModel) {
+        
     }
 
     /**
