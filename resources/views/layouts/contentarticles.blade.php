@@ -67,26 +67,19 @@
                 <tbody>
 
                     @if ($articles->count() > 0)
-                    {{ dd($articles) }}
                     @foreach($articles as $i => $a)
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $a->title }}</td>
                             <td>{{ $a->content }}</td>
                             <td>
-                                <img src="{{ asset("storage/image" . $a->featured_image) }}" alt="Gambar ku" style="width: 150px; height: 150px;">
+                                <img src="{{ 'storage/' . $a->featured_image }}" alt="pictures" style="width: 100px; height: 100px;">
                             </td>
                             <td class="">
-                                <a href="{{ url('/articles/' . $a->id . '/detail_khs') }}" class="btn btn-sm btn-info">
-                                    Nilai
-                                </a>
-                                <a href="{{ url('/articles/' . $a->id) }}" class="btn btn-sm btn-primary">
-                                    Detail
-                                </a>
                                 <a href="{{ url('/articles/' . $a->id . '/edit') }}" class="btn btn-sm btn-primary">
                                     Edit
                                 </a>
-                                <form class="d-inline" method="POST" action="{{ url('/articles/' . $m->id) }}">
+                                <form class="d-inline" method="POST" action="{{ url('/articles/' . $a->id) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" href="{{ url('/articles/' . $a->id) }}" class="btn btn-sm btn-danger">

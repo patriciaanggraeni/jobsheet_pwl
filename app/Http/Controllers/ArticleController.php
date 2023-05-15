@@ -24,7 +24,7 @@ class ArticleController extends Controller {
      */
     public function create() {
         $articles = ArticleModel::all();
-        return view('artikel.articles', ['articles' => $articles]);
+        return view('artikel.create', ['articles' => $articles]);
     }
 
     /**
@@ -44,7 +44,6 @@ class ArticleController extends Controller {
             'featured_image' => $image_name
         ]);
 
-        ArticleModel::create($request->all());
         return redirect('/articles')->with('success', 'Data Articles Berhasil Ditambahkan');
     }
 
@@ -65,7 +64,7 @@ class ArticleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(ArticleModel $articleModel) {
-        
+
     }
 
     /**
@@ -86,8 +85,8 @@ class ArticleController extends Controller {
      * @param  \App\Models\ArticleModel  $articleModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ArticleModel $articleModel)
-    {
-        //
+    public function destroy( $id ) {
+        ArticleModel::where('id', $id)->delete();
+        return redirect('/articles')->with('success', 'Data Artikel Berhasil Dihapus!');
     }
 }

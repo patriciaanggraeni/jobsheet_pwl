@@ -18,7 +18,7 @@ class TabelBantuMahasiswaMatakuliah extends Migration {
             $table->enum('nilai', ['A', 'B', 'c', 'D', 'E', 'F'])->nullable();
 
             $table->foreign('mahasiswa_id')->references('id')->on('mahasiswa')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('matakualiah_id')->references('id')->on('matakuliah')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('matakuliah_id')->references('id')->on('matakuliah')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
