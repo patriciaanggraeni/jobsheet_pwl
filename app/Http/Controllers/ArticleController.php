@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ArticleModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller {
 
@@ -63,8 +64,9 @@ class ArticleController extends Controller {
      * @param  \App\Models\ArticleModel  $articleModel
      * @return \Illuminate\Http\Response
      */
-    public function edit(ArticleModel $articleModel) {
-
+    public function edit( $id ) {
+        $articles = ArticleModel::find($id);
+        return view('artikel.update', ['articles' => $articles]);
     }
 
     /**
@@ -74,9 +76,20 @@ class ArticleController extends Controller {
      * @param  \App\Models\ArticleModel  $articleModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ArticleModel $articleModel)
-    {
-        //
+    public function update(Request $request, $id) {
+        $articles = ArticleModel::find($id);
+        $articles->title = $request->title;
+        $articles->content = $request->content;
+
+        if ($articles->featured_image && file_exists(storage_path('app/public' . $articles->featured_image))) {
+            Storage::delete('public/' . $articles->featured_image);
+        }
+
+        $image_name = $request->file('image')->store('image', 'public');
+        $articles->featured_image = $image_name;
+        $articles->save();
+
+        return redirect('/articles')->with('success', 'Data Artikel Berhasil Dirubah!');
     }
 
     /**
