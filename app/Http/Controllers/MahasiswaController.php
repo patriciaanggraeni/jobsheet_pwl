@@ -91,16 +91,13 @@ class MahasiswaController extends Controller {
     public function update(Request $request, $id) {
 
         $mahasiswa = MahasiswaModel::find($id);
-        $request->validate([
-            'nim' => 'required|string|max:10|unique:mahasiswa,nim,'.$id,
-            'nama' => 'required|string|max:50',
-            'kelas_id' => 'required',
-            'jenis_kelamin' => 'required|in:L,P',
-            'tempat_lahir' => 'required|string|max:50',
-            'tgl_lahir' => 'required|date',
-            'alamat' => 'required',
-            'no_telp' => 'required|digits_between:6,15'
-        ]);
+        $mahasiswa->kelas_id  = $request->kelas_id;
+        $mahasiswa->nim = $request->nim;
+        $mahasiswa->nama = $request->nama;
+        $mahasiswa->jenis_kelamin = $request->jenis_kelamin;
+        $mahasiswa->tgl_lahir = $request->tgl_lahir;
+        $mahasiswa->alamat = $request->alamat;
+        $mahasiswa->no_telp = $request->no_telp;
 
         if ($mahasiswa->gambar && file_exists(storage_path('app/public' . $mahasiswa->gambar))) {
             Storage::delete('public/' . $mahasiswa->gambar);

@@ -22,7 +22,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Title</h3>
+          <h3 class="card-title">Edit Data Mahasiswa</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -42,7 +42,7 @@
         <div class="profile"></div>
         <div class="card-body">
 
-            <form action="{{ url('/mahasiswa/' . $mahasiswa->id) }}" method="POST">
+            <form action="{{ url('/mahasiswa/' . $mahasiswa->id) }}" method="POST" enctype="multipart/form-data">
 
                 @csrf
                 {!! isset($mahasiswa) ? method_field('PUT') : '' !!}
@@ -57,6 +57,16 @@
                     <label for="input-name">Nama</label>
                     <input id="input-name" class="form-control" name="nama" type="text" value="{{ $mahasiswa->nama }}">
                     @error('nama')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <img width="150px" class="mb-2" src="{{ asset('storage/' . $mahasiswa->gambar) }}">
+                    <div>
+                        <label for="gambar">Gambar</label>
+                        <input id="gambar" class="form-control" name="gambar" type="file" value="{{ $mahasiswa->gambar }}">
+                    </div>
+                    @error('gambar')
                     <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
