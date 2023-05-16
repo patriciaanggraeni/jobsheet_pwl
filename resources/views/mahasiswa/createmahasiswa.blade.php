@@ -122,15 +122,7 @@
                 <button type="submit" class="btn btn-primary mt-3">Submit</button>
 
             </form>
-
-        <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
-        <!-- /.card-footer-->
+        <div class="card-footer"></div>
       </div>
-      <!-- /.card -->
-
     </section>
-    <!-- /.content -->
 </div>

@@ -25,11 +25,12 @@ class DatabaseSeeder extends Seeder
         $this->call( [KeluargaSeeder::class] );
 
         // panggil class KeluargaSeeder
-        // $this->call( [MahasiswaSeeder::class] );
+        $this->call( [MahasiswaSeeder::class] );
         $this->call( [MatkulSeeder::class] );
         $this->call( [UserSeeder::class] );
         $this->call( [MataKuliahSeeder::class] );
         $this->call( [KelasSeeder::class] );
         $this->call( [UpdateMahasiswaSeeder::class] );
+        // $this->call( [MahasiswaMataKuliahSeeder::class] );
     }
 }

@@ -45,33 +45,38 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('/keluarga') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-house-user"></i>
               <p>Keluarga</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ url('/matkul') }}" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-book-open"></i>
               <p>Mata Kuliah</p>
             </a>
           </li>
           <li class="nav-item">
             {{-- tambahkan opsi sidebar mengarah ke route mahasiswa --}}
             <a href="{{ url('/mahasiswa') }}" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-graduation-cap"></i>
               <p>Mahasiswa</p>
             </a>
           </li>
           <li class="nav-item">
             {{-- tambahkan opsi sidebar mengarah ke route mahasiswa --}}
             <a href="{{ url('/articles') }}" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-newspaper"></i>
               <p>Artikel</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            {{-- tambahkan opsi sidebar mengarah ke route mahasiswa --}}
+            <a href="{{ url('/logout') }}" class="nav-link">
+                <i class="nav-icon fas fa-arrow-right"></i>
+              <p>Logout</p>
             </a>
           </li>
         </ul>
       </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
   </aside>

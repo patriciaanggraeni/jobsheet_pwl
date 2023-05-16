@@ -40,6 +40,7 @@ class MahasiswaController extends Controller {
         $request->validate([
             'kelas_id' => 'required',
             'nim' => 'required|string|max:10|unique:mahasiswa,nim',
+            'gamabar' => 'string',
             'nama' => 'required|string|max:50',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required|string|max:50',
@@ -48,6 +49,10 @@ class MahasiswaController extends Controller {
             'no_telp' => 'required|string|max:15'
         ]);
 
+        if ($request->file('gambar')) {
+            $image_extension = $request->file('gambar')->store('image', 'public');
+        }
+        MahasiswaModel::create(['gambar' => $image_extension]);
         MahasiswaModel::create($request->all());
         return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil Ditambahkan');
     }
