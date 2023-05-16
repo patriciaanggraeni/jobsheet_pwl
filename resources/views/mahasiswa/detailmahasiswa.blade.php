@@ -57,16 +57,16 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ $mhs->nim }}</td>
-                        <td>{{ $mhs->nama }}</td>
-                        <td>{{ $mhs->kelas->nama_kelas }}</td>
+                        <td>{{ $mahasiswa->nim }}</td>
+                        <td>{{ $mahasiswa->nama }}</td>
+                        <td>{{ $mahasiswa->kelas->nama_kelas }}</td>
                         <td>
-                            {{ ($mhs->jenis_kelamin == 'l' ? 'Laki-laki' : 'Perempuan' ) }}
+                            {{ ($mahasiswa->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' ) }}
                         </td>
-                        <td>{{ $mhs->tempat_lahir }}</td>
-                        <td>{{ $mhs->tgl_lahir }}</td>
-                        <td>{{ $mhs->no_telp }}</td>
-                        <td>{{ $mhs->alamat }}</td>
+                        <td>{{ $mahasiswa->tempat_lahir }}</td>
+                        <td>{{ $mahasiswa->tgl_lahir }}</td>
+                        <td>{{ $mahasiswa->no_telp }}</td>
+                        <td>{{ $mahasiswa->alamat }}</td>
 
                     </tr>
                 </tbody>

@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'name' => 'Patria Anggara Susilo Putra',
             'email' => 'susiloangga17@gmail.com',
             'password' => Hash::make('ngodingterus'),
-            'username' => 'angga191'
+            'username' => 'angga'
         ]);
     }
 }

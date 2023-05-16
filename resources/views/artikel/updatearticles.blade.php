@@ -40,6 +40,7 @@
             <div class="card-body">
 
             <div class="container">
+
                 <form action="/articles/{{ $articles->id }}" method="post" enctype="multipart/form-data">
                     @csrf
                     {!! isset($articles) ? method_field('PUT') : '' !!}
@@ -67,6 +68,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary float-right">Ubah Data</button>
                 </form>
+
             </div>
 
             <div class="card-footer"></div>

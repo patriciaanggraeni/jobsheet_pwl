@@ -68,9 +68,8 @@
                 </thead>
                 <tbody>
 
-                    @if ($mhs->count() > 0)
-                    {{ dd($mhs) }}
-                    @foreach($mhs as $i => $m)
+                    @if ($paginate->count() > 0)
+                    @foreach($paginate as $i => $m)
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $m->nim }}</td>

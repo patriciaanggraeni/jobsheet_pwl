@@ -13,4 +13,3 @@ class KelasModel extends Model {
         return $this->hasMany(MahasiswaModel::class);
     }
 }
-

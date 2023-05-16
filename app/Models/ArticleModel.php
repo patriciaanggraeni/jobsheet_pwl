@@ -11,3 +11,4 @@ class ArticleModel extends Model {
     protected $table = 'articles';
     protected $fillable = ['title', 'content', 'featured_image'];
 }
+

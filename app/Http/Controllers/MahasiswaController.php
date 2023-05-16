@@ -15,8 +15,9 @@ class MahasiswaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $data_mhs = MahasiswaModel::all();
-        return view('mahasiswa')->with('mhs', $data_mhs);
+        $mahasiswa = MahasiswaModel::with('kelas')->get();
+        $paginate = MahasiswaModel::orderBy('id', 'asc')->paginate(3);
+        return view('mahasiswa', ['mahasiswa' => $mahasiswa, 'paginate' => $paginate]);
     }
 
     /**
@@ -57,9 +58,9 @@ class MahasiswaController extends Controller {
      * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function show( $nim ) {
-        $mahasiswa = MahasiswaModel::find($nim);
-        return view('mahasiswa.detailmhs', ['mhs' => $mahasiswa]);
+    public function show( $id ) {
+        $mahasiswa = MahasiswaModel::with('kelas')->where('id', $id)->first();
+        return view('mahasiswa.detailmhs', ['mahasiswa' => $mahasiswa]);
     }
 
     /**
@@ -68,10 +69,10 @@ class MahasiswaController extends Controller {
      * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function edit( $nim ) {
-        $mahasiswa = MahasiswaModel::find($nim);
+    public function edit( $id ) {
+        $mahasiswa = MahasiswaModel::with('kelas')->where('id', $id)->first();
         $kelas = KelasModel::all();
-        return view('mahasiswa.editmhs', ['mhs' => $mahasiswa, 'url_form' => url('/mahasiswa/' . $nim), 'kelas' => $kelas]);
+        return view('mahasiswa.editmhs', ['mahasiswa' => $mahasiswa, 'kelas' => $kelas]);
     }
 
     /**
@@ -98,9 +99,9 @@ class MahasiswaController extends Controller {
         return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil Dirubah!');
     }
 
-    public function khs($id) {
+    public function show_khs( $id ) {
         $mahasiswa = Mahasiswamodel::find($id);
-        $khs = MahasiswaMataKuliahModel::where('mahasiswa_id',$id)->get();
+        $khs = MahasiswaMataKuliahModel::where('id',$id)->get();
         return view('mahasiswa.nilaimhs', ['mahasiswa' => $mahasiswa, 'khs'=>$khs]);
     }
 

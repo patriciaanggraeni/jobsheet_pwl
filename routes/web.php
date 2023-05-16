@@ -53,11 +53,11 @@ Route::middleware(['auth'])->group( function() {
 
     // membuat route untuk crud dan ubah parameternya
     Route::resource('/mahasiswa', MahasiswaController::class)->parameter('mahasiswa', 'id');
-    Route::get('/mahasiswa/{id}/detail_khs',[MahasiswaController::class,'khs']);
+    Route::get('/mahasiswa/{id}/detail_khs',[MahasiswaController::class,'show_khs']);
 
-     // membuat route untuk menampilkan data artikel
-     Route::resource('/articles', ArticleController::class);
+    // membuat route untuk menampilkan data artikel
+    Route::resource('/articles', ArticleController::class);
 
-     Route::get('/article/exportpdf', [ArticleController::class, 'export_pdf'])->name('export_pdf');
+    Route::get('/article/exportpdf', [ArticleController::class, 'export_pdf'])->name('export_pdf');
 
 } );
