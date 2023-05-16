@@ -42,7 +42,7 @@
         <div class="profile"></div>
         <div class="card-body">
 
-            <form action="{{ url('/mahasiswa') }}" method="POST">
+            <form action="{{ url('/mahasiswa') }}" method="POST" enctype="multipart/form-data">
 
                 @csrf
                 <div class="form-group">
@@ -57,6 +57,14 @@
                     <label for="input-name">Nama</label>
                     <input id="input-name" class="form-control @error('nama') is-invalid @enderror" name="nama" type="text">
                     @error('nama')
+                        <span class="error invalid-feedback">{{ $message }} </span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="gambar">Nama</label>
+                    <input id="gambar" class="form-control @error('gambar') is-invalid @enderror" name="gambar" type="file">
+                    @error('gambar')
                         <span class="error invalid-feedback">{{ $message }} </span>
                     @enderror
                 </div>

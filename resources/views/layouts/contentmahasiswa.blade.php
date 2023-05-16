@@ -74,6 +74,9 @@
                             <td>{{ ++$i }}</td>
                             <td>{{ $m->nim }}</td>
                             <td>{{ $m->nama }}</td>
+                            <td>
+                                <img src="{{ url('storage/' . $m->gambar) }}" alt="gambar mahasiswa" style="width: 100px; height: 100px;">
+                            </td>
                             <td>{{ $m->kelas->nama_kelas }}</td>
                             <td>{{ ($m->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' ) }}</td>
                             <td class="">
