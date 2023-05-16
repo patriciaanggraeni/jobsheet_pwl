@@ -101,7 +101,7 @@ class MahasiswaController extends Controller {
 
     public function show_khs( $id ) {
         $mahasiswa = Mahasiswamodel::find($id);
-        $khs = MahasiswaMataKuliahModel::where('id',$id)->get();
+        $khs = MahasiswaMataKuliahModel::where('id_mahasiswa',$id)->get();
         return view('mahasiswa.nilaimhs', ['mahasiswa' => $mahasiswa, 'khs'=>$khs]);
     }
 
