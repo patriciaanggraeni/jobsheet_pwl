@@ -61,7 +61,7 @@
                         <td>{{ $mahasiswa->nim }}</td>
                         <td>{{ $mahasiswa->nama }}</td>
                         <td>
-                            <img src="{{ url('storage/' . $mahasiswa->gambar) }}" alt="gambar mahasiswa">
+                            <img src="{{ url('storage/' . $mahasiswa->gambar) }}" alt="gambar mahasiswa" style="width: 100px; height: 100px; border-radius: 50%;">
                         </td>
                         <td>{{ $mahasiswa->kelas->nama_kelas }}</td>
                         <td>

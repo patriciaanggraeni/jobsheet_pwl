@@ -38,23 +38,23 @@ class MahasiswaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $request->validate([
-            'kelas_id' => 'required',
-            'nim' => 'required|string|max:10|unique:mahasiswa,nim',
-            'gamabar' => 'string',
-            'nama' => 'required|string|max:50',
-            'jenis_kelamin' => 'required',
-            'tempat_lahir' => 'required|string|max:50',
-            'tgl_lahir' => 'required|date',
-            'alamat' => 'required',
-            'no_telp' => 'required|string|max:15'
-        ]);
 
         if ($request->file('gambar')) {
-            $image_extension = $request->file('gambar')->store('image', 'public');
+            $gambar = $request->file('gambar')->store('image', 'public');
         }
-        MahasiswaModel::create(['gambar' => $image_extension]);
-        MahasiswaModel::create($request->all());
+
+        MahasiswaModel::create([
+            'kelas_id' => $request->kelas_id,
+            'nim' => $request->nim,
+            'nama' => $request->nama,
+            'gambar' => $gambar,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tgl_lahir' => $request->tgl_lahir,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp
+        ]);
+
         return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil Ditambahkan');
     }
 
@@ -94,7 +94,6 @@ class MahasiswaController extends Controller {
         $request->validate([
             'nim' => 'required|string|max:10|unique:mahasiswa,nim,'.$id,
             'nama' => 'required|string|max:50',
-            'gambar' => 'string',
             'kelas_id' => 'required',
             'jenis_kelamin' => 'required|in:L,P',
             'tempat_lahir' => 'required|string|max:50',
