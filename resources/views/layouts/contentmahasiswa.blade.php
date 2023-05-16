@@ -61,6 +61,7 @@
                         <th>No</th>
                         <th>NIM</th>
                         <th>Nama</th>
+                        <th>Gambar</th>
                         <th>Kelas</th>
                         <th>Jenis Kelamin</th>
                         <th>Action</th>

@@ -47,6 +47,7 @@
                     <tr>
                         <th>NIM</th>
                         <th>Nama</th>
+                        <th>Gambar</th>
                         <th>Kelas</th>
                         <th>Jenis Kelamin</th>
                         <th>Tempat Lahir</th>
@@ -59,6 +60,9 @@
                     <tr>
                         <td>{{ $mahasiswa->nim }}</td>
                         <td>{{ $mahasiswa->nama }}</td>
+                        <td>
+                            <img src="{{ url('storage/' . $mahasiswa->gambar) }}" alt="gambar mahasiswa">
+                        </td>
                         <td>{{ $mahasiswa->kelas->nama_kelas }}</td>
                         <td>
                             {{ ($mahasiswa->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' ) }}
