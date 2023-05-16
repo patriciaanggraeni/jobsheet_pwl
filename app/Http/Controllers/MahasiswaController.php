@@ -7,6 +7,7 @@ use App\Models\Mahasiswa;
 use App\Models\MahasiswaMataKuliahModel;
 use App\Models\MahasiswaModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller {
     /**
@@ -89,9 +90,11 @@ class MahasiswaController extends Controller {
      */
     public function update(Request $request, $id) {
 
+        $mahasiswa = MahasiswaModel::find($id);
         $request->validate([
             'nim' => 'required|string|max:10|unique:mahasiswa,nim,'.$id,
             'nama' => 'required|string|max:50',
+            'gambar' => 'string',
             'kelas_id' => 'required',
             'jenis_kelamin' => 'required|in:L,P',
             'tempat_lahir' => 'required|string|max:50',
@@ -100,7 +103,13 @@ class MahasiswaController extends Controller {
             'no_telp' => 'required|digits_between:6,15'
         ]);
 
-        MahasiswaModel::where('id', $id)->update($request->except('_token', '_method'));
+        if ($mahasiswa->gambar && file_exists(storage_path('app/public' . $mahasiswa->gambar))) {
+            Storage::delete('public/' . $mahasiswa->gambar);
+        }
+
+        $gambar = $request->file('gambar')->store('image', 'public');
+        $mahasiswa->gambar = $gambar;
+        $mahasiswa->save();
         return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil Dirubah!');
     }
 
