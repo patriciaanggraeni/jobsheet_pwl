@@ -59,5 +59,6 @@ Route::middleware(['auth'])->group( function() {
     Route::resource('/articles', ArticleController::class);
 
     Route::get('/article/exportpdf', [ArticleController::class, 'export_pdf'])->name('export_pdf');
+    Route::get('/mahasiswa/export_mahasiswa_pdf/{id}', [MahasiswaController::class, 'export_mahasiswa_pdf'])->name('export_mahasiswa_pdf');
 
 } );

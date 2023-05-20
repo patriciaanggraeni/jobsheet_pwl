@@ -107,16 +107,9 @@
                 @endif
 
                 </tbody>
-
             </table>
-
         </div>
-        <!-- /.card-body -->
         <div class="card-footer"></div>
-        <!-- /.card-footer-->
       </div>
-      <!-- /.card -->
-
     </section>
-    <!-- /.content -->
-  </div>
+</div>

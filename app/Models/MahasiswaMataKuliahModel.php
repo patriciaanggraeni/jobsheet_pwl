@@ -16,10 +16,10 @@ class MahasiswaMataKuliahModel extends Model {
     ];
 
     public function mahasiswa() {
-        return $this->belongsTo(MahasiswaModel::class, 'id');
+        return $this->belongsTo(MahasiswaModel::class, 'id_mahasiswa');
     }
 
     public function matakuliah() {
-        return $this->belongsTo(MataKuliahModel::class, 'id');
+        return $this->belongsTo(MataKuliahModel::class, 'id_matakuliah');
     }
 }

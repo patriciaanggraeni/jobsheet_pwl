@@ -8,6 +8,7 @@ use App\Models\MahasiswaMataKuliahModel;
 use App\Models\MahasiswaModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class MahasiswaController extends Controller {
     /**
@@ -121,9 +122,15 @@ class MahasiswaController extends Controller {
      * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         MahasiswaModel::where('id', $id)->delete();
         return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil Dihapus!');
+    }
+
+    public function export_mahasiswa_pdf($id) {
+        $mahasiswa = MahasiswaModel::find($id);
+        $khs = MahasiswaMataKuliahModel::where('id_mahasiswa',$id)->get();
+        $pdf = PDF::loadview('mahasiswa.exportpdf', ['mahasiswa' => $mahasiswa, 'khs' => $khs]);
+        return $pdf->stream();
     }
 }

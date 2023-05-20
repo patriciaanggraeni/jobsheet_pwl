@@ -77,12 +77,12 @@
             </tbody>
         </table>
 
-        <!-- /.card-body -->
-        <div class="card-footer"></div>
-        <!-- /.card-footer-->
-      </div>
-      <!-- /.card -->
+        <div class="card-footer">
+            <form action="{{ url('/mahasiswa/export_mahasiswa_pdf/' . $mahasiswa->id) }}" method="GET">
+                <button type="submit" class="btn-primary p-3">Export PDF</button>
+            </form>
+        </div>
 
+      </div>
     </section>
-    <!-- /.content -->
-  </div>
+</div>
