@@ -4,18 +4,22 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Todo;
+use App\Traits\ApiResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
 
-class TodoController extends Controller
-{
+class TodoController extends Controller {
+
+    use ApiResponse;
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $user = auth()->user();
+        $todos = Todo::with('user')->where('user_id', $user->id)->get();
     }
 
     /**
@@ -24,9 +28,15 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        $request->validate();
+
+        $user = auth()->user();
+        $todo = new Todo($request->all());
+        $todo->user()->associate($user);
+        $todo->save();
+
+        return $this->apiSuccess($todo->load('user'));
     }
 
     /**
@@ -35,9 +45,9 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function show(Todo $todo)
-    {
-        //
+    public function show(Todo $todo) {
+        return $this->apiSuccess($todo->load('user'));
+
     }
 
     /**
@@ -47,9 +57,15 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
-    {
-        //
+    public function update(Request $request, Todo $todo) {
+        $request->validate();
+
+        $todo->todo = $request->todo;
+        $todo->label = $request->label;
+        $todo->done = $request->done;
+        $todo->save();
+
+        return $this->apiSuccess($todo->load('user'));
     }
 
     /**
@@ -58,8 +74,16 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todo $todo)
-    {
-        //
+    public function destroy(Todo $todo) {
+        if (auth()->user()->id == $todo->user_id) {
+            $todo->delete();
+            return $this->apiSuccess($todo);
+        }
+
+        return $this->apiError(
+            'Unauthorized',
+            Response::HTTP_UNAUTHORIZED
+        );
+
     }
 }
