@@ -4,10 +4,11 @@ namespace App\Http\Requests;
 
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
-class RegisterRequest extends ApiRequest {
-
+class LoginRequest extends ApiRequest
+{
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,24 +24,23 @@ class RegisterRequest extends ApiRequest {
      * @return array
      */
     public function rules() {
-
         return [
-            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8'
         ];
     }
 
-    public function register(RegisterRequest $request) {
+    public function login(LoginRequest $request) {
 
         $validated = $request->validated();
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make( $validated['password'])
-        ]);
 
+        if (!Auth::attempt( $validated )) {
+            return $this->apiError('Credentials not match', Response::HTTP_UNAUTHORIZED);
+        }
+
+        $user = User::where('email', $validated['email'])->first();
         $token = $user->createToken('auth_token')->plainTextToken;
+
         return $this->apiSuccess([
             'token' => $token,
             'token_type' => 'Bearer',
