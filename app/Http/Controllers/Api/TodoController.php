@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TodoRequest;
 use App\Models\Todo;
 use App\Traits\ApiResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,7 @@ class TodoController extends Controller {
     public function index() {
         $user = auth()->user();
         $todos = Todo::with('user')->where('user_id', $user->id)->get();
+        return $this->apiSuccess($todos);
     }
 
     /**
@@ -28,8 +30,8 @@ class TodoController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        $request->validate();
+    public function store(TodoRequest $request) {
+        $request->validated();
 
         $user = auth()->user();
         $todo = new Todo($request->all());
@@ -57,7 +59,7 @@ class TodoController extends Controller {
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo) {
+    public function update(TodoRequest $request, Todo $todo) {
         $request->validate();
 
         $todo->todo = $request->todo;
