@@ -18,3 +18,4 @@ Trait ApiResponse {
         ], $code);
     }
 }
+

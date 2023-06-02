@@ -1,49 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pemrograman Web Lanjut</title>
+@extends('layouts.template')
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-</head>
-<body class="hold-transition sidebar-mini">
-    <!-- Site wrapper -->
-    <div class="wrapper">
+@section('content')
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Data Kendaraan</h3>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>nopol</th>
+                            <th>merk</th>
+                            <th>jenis</th>
+                            <th>tahun buat</th>
+                            <th>warna</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-    <!-- Navbar -->
-    @include("layouts.navbar")
-    <!-- /.navbar -->
+                        @foreach ($kendaraan as $data)
+                            <tr>
+                                <td>{{ $data->nopol }}</td>
+                                <td>{{ $data->merk }}</td>
+                                <td>{{ $data->jenis }}</td>
+                                <td>{{ $data->tahun_buat }}</td>
+                                <td>{{ $data->warna }}</td>
+                            </tr>
+                        @endforeach
 
-    <!-- Main Sidebar Container -->
-    @include("layouts.sidebar")
-
-    <!-- Content Wrapper. Contains page content -->
-    @include("layouts.contentkendaraan")
-
-    <!-- /.content-wrapper -->
-    @include("layouts.footer")
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-    </div>
-    <!-- ./wrapper -->
-
-    <!-- jQuery -->
-    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-
-    @stack('script')
-</body>
-</html>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+@endsection

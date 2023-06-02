@@ -49,7 +49,6 @@ class TodoController extends Controller {
      */
     public function show(Todo $todo) {
         return $this->apiSuccess($todo->load('user'));
-
     }
 
     /**
@@ -86,6 +85,5 @@ class TodoController extends Controller {
             'Unauthorized',
             Response::HTTP_UNAUTHORIZED
         );
-
     }
 }

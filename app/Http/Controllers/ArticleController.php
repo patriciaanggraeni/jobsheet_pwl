@@ -16,7 +16,7 @@ class ArticleController extends Controller {
      */
     public function index() {
         $data_articles = ArticleModel::all();
-        return view('articles')->with('articles', $data_articles);
+        return view('artikel.articles')->with('articles', $data_articles);
     }
 
     /**

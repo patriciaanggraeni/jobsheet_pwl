@@ -3,92 +3,81 @@
 namespace App\Http\Controllers;
 
 use App\Models\KelasModel;
-use App\Models\Mahasiswa;
 use App\Models\MahasiswaMataKuliahModel;
 use App\Models\MahasiswaModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\DataTables;
 
 class MahasiswaController extends Controller {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index() {
-        $mahasiswa = MahasiswaModel::with('kelas')->get();
-        $paginate = MahasiswaModel::orderBy('id', 'asc')->paginate(3);
-        return view('mahasiswa', ['mahasiswa' => $mahasiswa, 'paginate' => $paginate]);
+        // $mahasiswa = MahasiswaModel::with('kelas')->get();
+        // $paginate = MahasiswaModel::orderBy('id', 'asc')->paginate(3);
+        // return view('mahasiswa', ['mahasiswa' => $mahasiswa, 'paginate' => $paginate]);
+        $kelas = KelasModel::all();
+        return view('mahasiswa.mahasiswa', ['kelas' => $kelas]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function data_mahasiswa() {
+        $mahasiswa = MahasiswaModel::with('kelas')->get();
+        return DataTables::of($mahasiswa)
+        ->addIndexColumn()
+        ->addColumn('nama_kelas', function($row) {
+            return $row->kelas->nama_kelas;
+        })
+        ->make(true);
+    }
+
     public function create() {
         $kelas = KelasModel::all();
-        return view('mahasiswa.mhs', ['kelas' => $kelas]);
+        return view('mahasiswa.create', ['kelas' => $kelas]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request) {
+    
+        $request->validate( [
+            'nim' => 'required|string|max:10|unique:mahasiswa,nim',
+            'nama' => 'required|string|max:50',
+            'kelas_id' => 'required',
+            'gambar' => 'image|mimes:png,jpg,jpeg',
+            'jenis_kelamin' => 'required|in:L,P',
+            'tempat_lahir' => 'required|string|max:50',
+            'tgl_lahir' => 'required',
+            'alamat' => 'required|string',
+            'no_telp' => 'required|digits_between:6,15',
+        ] );
 
-        if ($request->file('gambar')) {
-            $gambar = $request->file('gambar')->store('image', 'public');
-        }
+        $gambar = $request->file('gambar')->store('image', 'public');
 
         MahasiswaModel::create([
-            'kelas_id' => $request->kelas_id,
             'nim' => $request->nim,
             'nama' => $request->nama,
+            'kelas_id' => $request->kelas_id,
             'gambar' => $gambar,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tempat_lahir' => $request->tempat_lahir,
             'tgl_lahir' => $request->tgl_lahir,
             'alamat' => $request->alamat,
-            'no_telp' => $request->no_telp
+            'no_telp' => $request->no_telp,
         ]);
 
-        return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil Ditambahkan');
+        redirect('mahasiswa')->with('success', 'Mahasiswa Berhasil Ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Mahasiswa  $mahasiswa
-     * @return \Illuminate\Http\Response
-     */
     public function show( $id ) {
         $mahasiswa = MahasiswaModel::with('kelas')->where('id', $id)->first();
         return view('mahasiswa.detailmhs', ['mahasiswa' => $mahasiswa]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Mahasiswa  $mahasiswa
-     * @return \Illuminate\Http\Response
-     */
     public function edit( $id ) {
         $mahasiswa = MahasiswaModel::with('kelas')->where('id', $id)->first();
         $kelas = KelasModel::all();
         return view('mahasiswa.editmhs', ['mahasiswa' => $mahasiswa, 'kelas' => $kelas]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Mahasiswa $mahasiswa
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id) {
 
         $mahasiswa = MahasiswaModel::find($id);
@@ -116,12 +105,6 @@ class MahasiswaController extends Controller {
         return view('mahasiswa.nilaimhs', ['mahasiswa' => $mahasiswa, 'khs'=>$khs]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Mahasiswa  $mahasiswa
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id) {
         MahasiswaModel::where('id', $id)->delete();
         return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil Dihapus!');

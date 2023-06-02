@@ -27,12 +27,11 @@ class TodoRequest extends ApiRequest {
      * @return array
      */
     public function rules() {
-        
+
         return [
             'todo' => 'required|string|max:255',
             'label' => 'nullable|string',
             'done' => 'nullable|boolean'
         ];
-
     }
 }
